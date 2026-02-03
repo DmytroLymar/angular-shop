@@ -1,0 +1,7 @@
+# Docker Ignore
+/node_modules
+/.git
+/.dockerignore
+/Dockerfile
+/dist
+/tmp

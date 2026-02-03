@@ -1,0 +1,10 @@
+<article class="card">
+  <div class="card-body">
+    <h2>{{ product.name }}</h2>
+    <p>{{ product.description }}</p>
+  </div>
+  <div class="card-footer">
+    <span class="price">{{ product.price | currency: 'USD' : 'symbol' : '1.2-2' }}</span>
+    <button type="button" (click)="onAdd()">Add to cart</button>
+  </div>
+</article>

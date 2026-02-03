@@ -1,0 +1,44 @@
+<section class="cart">
+  <header class="cart-header">
+    <h2>Your cart</h2>
+    <p>{{ items.length }} items</p>
+  </header>
+
+  <div *ngIf="items.length === 0" class="empty">
+    <p>Your cart is empty. Add an item to get started.</p>
+  </div>
+
+  <div *ngIf="items.length > 0" class="cart-items">
+    <div class="cart-row" *ngFor="let item of items">
+      <div>
+        <h3>{{ item.product.name }}</h3>
+        <p>{{ item.product.price | currency:'USD':'symbol':'1.2-2' }} each</p>
+      </div>
+      <div class="quantity">
+        <button type="button" (click)="onDecrease(item.product)" aria-label="Decrease quantity">-</button>
+        <span>{{ item.quantity }}</span>
+        <button type="button" (click)="onIncrease(item.product)" aria-label="Increase quantity">+</button>
+      </div>
+      <div class="line-total">
+        {{ item.lineTotal | currency:'USD':'symbol':'1.2-2' }}
+      </div>
+      <button class="link-button" type="button" (click)="onRemove(item.product)">Remove</button>
+    </div>
+  </div>
+
+  <div class="summary" *ngIf="items.length > 0">
+    <div>
+      <span>Subtotal</span>
+      <span>{{ subtotal | currency:'USD':'symbol':'1.2-2' }}</span>
+    </div>
+    <div>
+      <span>Tax ({{ (taxRate * 100) | number:'1.0-2' }}%)</span>
+      <span>{{ tax | currency:'USD':'symbol':'1.2-2' }}</span>
+    </div>
+    <div class="total">
+      <span>Total</span>
+      <span>{{ total | currency:'USD':'symbol':'1.2-2' }}</span>
+    </div>
+    <button class="checkout" type="button">Checkout</button>
+  </div>
+</section>

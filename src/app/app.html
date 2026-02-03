@@ -5,17 +5,20 @@
       <h1>{{ title() }}</h1>
       <p class="subhead">Grab a few favorites and check out in seconds.</p>
     </div>
-    <button class="ghost-button" type="button" (click)="clearCart()" [disabled]="cartItems().length === 0">
+    <button
+      class="ghost-button"
+      type="button"
+      (click)="clearCart()"
+      [disabled]="cartItems().length === 0"
+    >
       Clear cart
     </button>
   </header>
 
   <section class="grid">
-    <app-product-card
-      *ngFor="let product of products()"
-      [product]="product"
-      (add)="addToCart($event)"
-    />
+    @for (product of products(); track product.id) {
+      <app-product-card [product]="product" (add)="addToCart($event)" />
+    }
   </section>
 
   <app-cart
